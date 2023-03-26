@@ -1,18 +1,38 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { apiUser, apiIssues, apiSelectIssue } from "../service/Api";
+import { BlogIntro } from "../@types/BlogContextTypes";
 
-export const BlogContext = createContext({} as any);
+interface BlogContextType {
+  user: BlogIntro
+}
 
-export function BlogContextProvider({ children }: any) {
+interface BlogContextProviderProps {
+  children: ReactNode;
+}
 
-  const [user, setUser] = useState({});
+export const BlogContext = createContext({} as BlogContextType);
+
+export function BlogContextProvider({ children }: BlogContextProviderProps) {
+
+  const [user, setUser] = useState<BlogIntro>({
+    userName: "",
+    userLogin: "",
+    userCompany: "",
+    userBio: "",
+  });
+
   const [issues, setIssues] = useState({});
   const [singleIssue, setSingleIssue] = useState({});
 
   useEffect(() => {
     apiUser.get(`AntonioDeveloper`)
       .then((response: any) => {
-        setUser(response.data);
+        setUser({
+          userName: response.data.name,
+          userLogin: response.data.login,
+          userCompany: response.data.company,
+          userBio: response.data.bio
+        });
       })
       .catch((err: string) => {
         console.log("Erro:" + err);
@@ -43,7 +63,7 @@ export function BlogContextProvider({ children }: any) {
   }, []);
 
   return (
-    <BlogContext.Provider value={{ user, issues, singleIssue }}>
+    <BlogContext.Provider value={{ user }}>
       {children}
     </BlogContext.Provider>
   )

@@ -3,9 +3,9 @@ import { BlogContext } from "../context/BlogContext";
 
 export function Body() {
 
-  const { user, issues, singleIssue } = useContext(BlogContext);
+  const { user } = useContext(BlogContext);
 
-  console.log(singleIssue);
+  console.log(user.userName, user.userLogin, user.userCompany, user.userBio);
 
   return (
     <h1>Body</h1>
