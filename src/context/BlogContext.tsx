@@ -16,7 +16,7 @@ export function BlogContextProvider({ children }: any) {
       })
       .catch((err: string) => {
         console.log("Erro:" + err);
-      });
+      })
 
   }, []);
 
