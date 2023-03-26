@@ -1,9 +1,10 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { apiUser, apiIssues, apiSelectIssue } from "../service/Api";
-import { BlogIntro } from "../@types/BlogContextTypes";
+import { BlogIntro, IssueType } from "../@types/BlogContextTypes";
 
 interface BlogContextType {
-  user: BlogIntro
+  user: BlogIntro,
+  issues: IssueType,
 }
 
 interface BlogContextProviderProps {
@@ -21,7 +22,10 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
     userBio: "",
   });
 
-  const [issues, setIssues] = useState({});
+  const [issues, setIssues] = useState<IssueType>({
+    issues: [],
+    map() { },
+  });
   const [singleIssue, setSingleIssue] = useState({});
 
   useEffect(() => {
@@ -41,9 +45,17 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
   }, []);
 
   useEffect(() => {
-    apiIssues.get(`Boas%20pr%C3%A1ticas%20repo:AntonioDeveloper/Github-blog`)
+    apiIssues.get(`AntonioDeveloper/Github-blog/issues`)
       .then((response: any) => {
+        //console.log(response.data);
         setIssues(response.data);
+        // response.data.forEach((res: any) => {
+        //   setIssues({
+        //     titleIssue: res.title,
+        //     dateIssue: res.created_at,
+        //     bodyIssue: res.body
+        //   });
+        // });
       })
       .catch((err: string) => {
         console.log("Erro:" + err);
@@ -63,7 +75,7 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
   }, []);
 
   return (
-    <BlogContext.Provider value={{ user }}>
+    <BlogContext.Provider value={{ user, issues }}>
       {children}
     </BlogContext.Provider>
   )

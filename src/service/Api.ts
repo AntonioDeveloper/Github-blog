@@ -5,7 +5,7 @@ export const apiUser = axios.create({
 });
 
 export const apiIssues = axios.create({
-  baseURL: 'https://api.github.com/search/issues?q=',
+  baseURL: 'https://api.github.com/repos/',
 });
 
 export const apiSelectIssue = axios.create({
