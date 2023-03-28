@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { BlogContext } from "../context/BlogContext";
+import { Header } from "./Header/Header";
 
 export function Body() {
 
@@ -9,7 +10,6 @@ export function Body() {
 
   return (
     <div>
-      <h1>Body</h1>
       {
         issues.map((i: any) => {
           return (

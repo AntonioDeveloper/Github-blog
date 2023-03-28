@@ -1,10 +1,11 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { apiUser, apiIssues, apiSelectIssue } from "../service/Api";
 import { BlogIntro, IssueType } from "../@types/BlogContextTypes";
+import { BlogIssueType } from '../@types/BlogIssueType';
 
 interface BlogContextType {
   user: BlogIntro,
-  issues: IssueType,
+  issues: BlogIssueType[],
 }
 
 interface BlogContextProviderProps {
@@ -22,10 +23,13 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
     userBio: "",
   });
 
-  const [issues, setIssues] = useState<IssueType>({
-    issues: [],
-    map() { },
-  });
+  const [issues, setIssues] = useState<BlogIssueType[]>([
+    {
+      titleIssue: "",
+      dateIssue: "",
+      bodyIssue: "",
+    }
+  ]);
   const [singleIssue, setSingleIssue] = useState({});
 
   useEffect(() => {

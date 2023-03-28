@@ -8,6 +8,5 @@ export interface BlogIntro {
 }
 
 export interface IssueType {
-  issues: BlogIssueType[];
-  map(x: any): any;
+  issues: BlogIssueType;
 }
