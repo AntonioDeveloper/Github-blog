@@ -13,6 +13,7 @@ export function App() {
         <BlogContextProvider>
           <Router />
         </BlogContextProvider>
+        <GlobalStyle />
       </BrowserRouter>
     </ThemeProvider>
   );

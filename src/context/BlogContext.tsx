@@ -17,6 +17,7 @@ export const BlogContext = createContext({} as BlogContextType);
 export function BlogContextProvider({ children }: BlogContextProviderProps) {
 
   const [user, setUser] = useState<BlogIntro>({
+    userImage: "",
     userName: "",
     userLogin: "",
     userCompany: "",
@@ -36,6 +37,8 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
     apiUser.get(`AntonioDeveloper`)
       .then((response: any) => {
         setUser({
+          userImage: response.data.avatar_url
+          ,
           userName: response.data.name,
           userLogin: response.data.login,
           userCompany: response.data.company,
