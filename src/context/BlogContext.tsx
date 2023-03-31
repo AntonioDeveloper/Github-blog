@@ -22,6 +22,7 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
     userLogin: "",
     userCompany: "",
     userBio: "",
+    userFollowers: 0
   });
 
   const [issues, setIssues] = useState<BlogIssueType[]>([
@@ -42,7 +43,8 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
           userName: response.data.name,
           userLogin: response.data.login,
           userCompany: response.data.company,
-          userBio: response.data.bio
+          userBio: response.data.bio,
+          userFollowers: response.data.followers
         });
       })
       .catch((err: string) => {

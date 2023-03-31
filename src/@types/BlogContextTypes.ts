@@ -6,6 +6,7 @@ export interface BlogIntro {
   userLogin: string;
   userCompany: string;
   userBio: string;
+  userFollowers: number;
 }
 
 export interface IssueType {
