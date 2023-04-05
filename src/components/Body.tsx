@@ -1,27 +1,25 @@
 import { useContext, useState, useEffect } from "react";
 import { BlogContext } from "../context/BlogContext";
 import { BioCard } from "./BioCard/BioCard";
+import { BlogIssueType } from "../@types/BlogIssueType"
+import { IssueCard } from "./IssueCard/IssueCard";
 
 export function Body() {
 
   const { user, issues } = useContext(BlogContext);
 
-  //console.log(user);
-
   return (
     <div>
       <BioCard owner={user} />
-      {
-        issues.map((i: any) => {
-          return (
-            <div key={i.id}>
-              <h3>{i.title}</h3>
-              <span>{i.created_at}</span>
-              <p>{i.body}</p>
-            </div>
-          );
-        })
-      }
+      <div className="cardsContainer">
+        {
+          issues.map((i: BlogIssueType) => {
+            return (
+              <IssueCard item={i} key={i.id} />
+            );
+          })
+        }
+      </div>
     </div>
   );
 }

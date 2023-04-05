@@ -1,5 +1,6 @@
 export interface BlogIssueType {
-  titleIssue: string;
-  dateIssue: string;
-  bodyIssue: string;
+  id: number;
+  title: string;
+  created_at: string;
+  body: string;
 }

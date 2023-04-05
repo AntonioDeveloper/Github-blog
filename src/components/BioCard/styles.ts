@@ -28,7 +28,7 @@ export const BioCardContainer = styled.div`
   }
 
   .owner-infos {
-    width: 80%;
+    width: 70%;
     float: right;
 
     .headline {

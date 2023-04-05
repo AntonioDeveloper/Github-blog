@@ -27,9 +27,10 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
 
   const [issues, setIssues] = useState<BlogIssueType[]>([
     {
-      titleIssue: "",
-      dateIssue: "",
-      bodyIssue: "",
+      id: 0,
+      title: "",
+      created_at: "",
+      body: "",
     }
   ]);
   const [singleIssue, setSingleIssue] = useState({});
