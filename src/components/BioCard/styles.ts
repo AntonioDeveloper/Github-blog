@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const BioCardContainer = styled.div`
-.card-container {
+  position: relative;
   background-color: #0B1B2B;
   color: #fff;
-  width: 864px;
+  width: 70%;
   height: 212px;
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -15,9 +15,8 @@ export const BioCardContainer = styled.div`
   padding: 32px 40px;
   position: absolute;
   top: 208px;
-  left: -25%;
+  left: -35%;
   margin-left: 50%;
-}
   
   .img-owner-profile {
     width: 148px;

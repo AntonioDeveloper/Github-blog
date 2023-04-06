@@ -1,25 +1,15 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { BlogContext } from "../context/BlogContext";
-import { BioCard } from "./BioCard/BioCard";
-import { BlogIssueType } from "../@types/BlogIssueType"
-import { IssueCard } from "./IssueCard/IssueCard";
+import { CardsContainer } from "./CardsContainer/CardsContainer";
+
 
 export function Body() {
 
-  const { user, issues } = useContext(BlogContext);
+  const { issues } = useContext(BlogContext);
 
   return (
     <div>
-      <BioCard owner={user} />
-      <div className="cardsContainer">
-        {
-          issues.map((i: BlogIssueType) => {
-            return (
-              <IssueCard item={i} key={i.id} />
-            );
-          })
-        }
-      </div>
+      <CardsContainer allIssues={issues} />
     </div>
   );
 }
