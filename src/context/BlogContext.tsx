@@ -1,11 +1,13 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { apiUser, apiIssues, apiSelectIssue } from "../service/Api";
 import { BlogIntro, IssueType } from "../@types/BlogContextTypes";
-import { BlogIssueType } from '../@types/BlogIssueType';
+import { BlogIssueType, SingleIssueType } from '../@types/BlogIssueType';
 
 interface BlogContextType {
   user: BlogIntro,
   issues: BlogIssueType[],
+  issueSearch: (queryStr: string) => Promise<void>,
+  singleIssue: SingleIssueType
 }
 
 interface BlogContextProviderProps {
@@ -33,7 +35,13 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
       body: "",
     }
   ]);
-  const [singleIssue, setSingleIssue] = useState({});
+  const [singleIssue, setSingleIssue] = useState<SingleIssueType>({
+    id: 0,
+    title: "",
+    created_at: "",
+    body: "",
+    items: []
+  });
 
   useEffect(() => {
     apiUser.get(`AntonioDeveloper`)
@@ -73,19 +81,18 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
 
   }, []);
 
-  useEffect(() => {
-    apiSelectIssue.get(`AntonioDeveloper/Github-blog/issues/1`)
+  async function issueSearch(queryStr: string) {
+    await apiSelectIssue.get(`${queryStr}%20repo:AntonioDeveloper/Github-blog`)
       .then((response: any) => {
         setSingleIssue(response.data);
       })
       .catch((err: string) => {
         console.log("Erro:" + err);
       });
-
-  }, []);
+  }
 
   return (
-    <BlogContext.Provider value={{ user, issues }}>
+    <BlogContext.Provider value={{ user, issues, issueSearch, singleIssue }}>
       {children}
     </BlogContext.Provider>
   )

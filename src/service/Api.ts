@@ -9,6 +9,6 @@ export const apiIssues = axios.create({
 });
 
 export const apiSelectIssue = axios.create({
-  baseURL: 'https://api.github.com/repos/',
+  baseURL: 'https://api.github.com/search/issues?q=',
 });
 

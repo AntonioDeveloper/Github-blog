@@ -3,6 +3,7 @@ import { IssueItemContainer } from "./styles";
 
 interface itemIssue {
   item: BlogIssueType;
+  idNumber?: number;
 }
 
 export function IssueCard({ item }: itemIssue) {
