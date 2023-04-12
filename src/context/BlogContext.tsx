@@ -40,7 +40,14 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
     title: "",
     created_at: "",
     body: "",
-    items: []
+    items: [
+      {
+        id: 0,
+        title: "",
+        created_at: "",
+        body: "",
+      }
+    ]
   });
 
   useEffect(() => {

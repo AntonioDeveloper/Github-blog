@@ -8,7 +8,7 @@ import { BlogContext } from "../../context/BlogContext";
 
 export function SearchBar() {
 
-  const { issueSearch } = useContext(BlogContext);
+  const { issueSearch, issues } = useContext(BlogContext);
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +19,10 @@ export function SearchBar() {
     event.preventDefault();
     const queryStr = inputValue.replaceAll(" ", "%20");
     //console.log('Input value:', inputValue, queryStr);
+    // if (!queryStr) {
+    //   console.log("NADA AQUI");
+    //   return;
+    // }
     issueSearch(queryStr);
   };
 

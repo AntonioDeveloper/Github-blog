@@ -6,9 +6,16 @@ export interface BlogIssueType {
 }
 
 export interface SingleIssueType {
-  id: number;
-  title: string;
-  created_at: string;
-  body: string;
-  items: []
+  id: number | undefined;
+  title: string | undefined;
+  created_at: string | undefined;
+  body: string | undefined;
+  items: [
+    {
+      id: number | undefined;
+      title: string | undefined;
+      created_at: string | undefined;
+      body: string | undefined;
+    }
+  ] | undefined;
 }
