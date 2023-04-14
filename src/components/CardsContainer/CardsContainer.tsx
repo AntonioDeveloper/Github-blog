@@ -3,34 +3,26 @@ import { IssueCard } from "../IssueCard/IssueCard";
 import { SingleIssueCard } from "../SingleIssueCard/SingleIssueCard";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { CardsContainerStyles } from "./styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BlogContext } from "../../context/BlogContext";
 
 interface issuesArray {
   allIssues: BlogIssueType[];
 }
 
-interface SearchFormInput {
-
-}
-
 export function CardsContainer({ allIssues }: issuesArray) {
 
   const { singleIssue } = useContext(BlogContext);
 
-  console.log("One", singleIssue);
-  // let singleIssueCard;
-  // if (singleIssue) {
-  //   singleIssueCard = allIssues.find((i: BlogIssueType) => i.id === singleIssue.id);
-  // }
+  const [inputVal, setIputVal] = useState("");
 
-  //console.log(singleIssueCard);
+  let totalIssues: number = allIssues.length;
 
   return (
     <CardsContainerStyles>
-      <SearchBar />
+      <SearchBar setQuery={setIputVal} qtdeIssues={totalIssues} />
       {
-        singleIssue.items?.[0].body === "" ?
+        singleIssue.items?.[0].body === "" || inputVal === "" ?
           allIssues.map((i: BlogIssueType) => {
             return (
               <IssueCard item={i} key={i.id} />

@@ -2,27 +2,34 @@ import { SearchBarContainer } from "./styles";
 import { useContext, useState } from 'react';
 import { BlogContext } from "../../context/BlogContext";
 
-// interface InputVal {
-//   txt: string;
-// }
+interface InputVal {
+  setQuery: (value: string) => void;
+  qtdeIssues: number;
+}
 
-export function SearchBar() {
+export function SearchBar({ qtdeIssues, setQuery }: InputVal) {
 
-  const { issueSearch, issues } = useContext(BlogContext);
+  const { issueSearch } = useContext(BlogContext);
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
+  let queryStr = "";
+  const newQtyIssue = 1;
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const queryStr = inputValue.replaceAll(" ", "%20");
-    //console.log('Input value:', inputValue, queryStr);
-    // if (!queryStr) {
-    //   console.log("NADA AQUI");
-    //   return;
-    // }
+    queryStr = inputValue.replaceAll(" ", "%20");
+    setQuery(queryStr);
+    console.log(newQtyIssue)
+    if (queryStr !== " ") {
+      setQuery("");
+      qtdeIssues = qtdeIssues;
+      console.log(qtdeIssues)
+      return;
+    }
     issueSearch(queryStr);
   };
 
@@ -33,7 +40,15 @@ export function SearchBar() {
           <label htmlFor="issues-search">
             Publicações
           </label>
-          <span>3 publicações</span>
+          <span>
+            {
+              !queryStr ?
+                qtdeIssues
+                :
+                newQtyIssue
+            }
+            publicações
+          </span>
         </div>
         <input type="search" id="issue-search" name="issue-search" placeholder="Buscar conteúdo" onChange={handleInputChange} />
 
