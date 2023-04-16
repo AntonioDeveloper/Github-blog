@@ -1,5 +1,5 @@
 import { SearchBarContainer } from "./styles";
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { BlogContext } from "../../context/BlogContext";
 
 interface InputVal {
@@ -8,27 +8,32 @@ interface InputVal {
 }
 
 export function SearchBar({ qtdeIssues, setQuery }: InputVal) {
-
   const { issueSearch } = useContext(BlogContext);
   const [inputValue, setInputValue] = useState('');
+  const [totalIssues, setTotalIssues] = useState(qtdeIssues);
+
+  useEffect(() => {
+    setTotalIssues(qtdeIssues);
+  }, [qtdeIssues]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
   let queryStr = "";
-  const newQtyIssue = 1;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     queryStr = inputValue.replaceAll(" ", "%20");
     setQuery(queryStr);
-    console.log(newQtyIssue)
-    if (queryStr !== " ") {
+
+    if (queryStr == "") {
       setQuery("");
-      qtdeIssues = qtdeIssues;
-      console.log(qtdeIssues)
+      setTotalIssues(qtdeIssues);
       return;
+    } else {
+      qtdeIssues = 1;
+      setTotalIssues(qtdeIssues);
     }
     issueSearch(queryStr);
   };
@@ -42,12 +47,9 @@ export function SearchBar({ qtdeIssues, setQuery }: InputVal) {
           </label>
           <span>
             {
-              !queryStr ?
-                qtdeIssues
-                :
-                newQtyIssue
+              totalIssues
             }
-            publicações
+            &nbsp; publicações
           </span>
         </div>
         <input type="search" id="issue-search" name="issue-search" placeholder="Buscar conteúdo" onChange={handleInputChange} />
