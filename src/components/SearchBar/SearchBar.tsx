@@ -1,6 +1,7 @@
 import { SearchBarContainer } from "./styles";
 import { useContext, useState, useEffect } from 'react';
 import { BlogContext } from "../../context/BlogContext";
+import { MagnifyingGlass } from 'phosphor-react';
 
 interface InputVal {
   setQuery: (value: string) => void;
@@ -54,7 +55,9 @@ export function SearchBar({ qtdeIssues, setQuery }: InputVal) {
         </div>
         <input type="search" id="issue-search" name="issue-search" placeholder="Buscar conteúdo" onChange={handleInputChange} />
 
-        <button type="submit">Buscar</button>
+        <button type="submit">
+          <MagnifyingGlass width={16} height={16} />
+        </button>
       </form>
     </SearchBarContainer>
   )
