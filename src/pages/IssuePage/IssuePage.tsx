@@ -1,5 +1,10 @@
+import { IssuePageContainer } from "./styles";
+
+
 export function IssuePage() {
   return (
-    <h1>IssuePage</h1>
+    <IssuePageContainer>
+      <h1 id="issue">IssuePage</h1>
+    </IssuePageContainer>
   )
 }

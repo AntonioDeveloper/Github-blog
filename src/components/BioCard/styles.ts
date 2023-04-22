@@ -14,7 +14,7 @@ export const BioCardContainer = styled.div`
   box-sizing: border-box;
   padding: 32px 40px;
   position: absolute;
-  top: 208px;
+  top: 188px;
   left: -35%;
   margin-left: 50%;
   

@@ -1,7 +1,16 @@
+import { BioCard } from "../../components/BioCard/BioCard";
 import { Body } from "../../components/Body";
+import { useContext } from "react";
+import { BlogContext } from "../../context/BlogContext";
 
 export function Home() {
+
+  const { user } = useContext(BlogContext);
+
   return (
-    <Body />
+    <div>
+      <BioCard owner={user} />
+      <Body />
+    </div>
   )
 }

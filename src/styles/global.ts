@@ -15,5 +15,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${(props) => props.theme.background};
+    background-image: url("src/assets/cover.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: auto;
   }
 `;
