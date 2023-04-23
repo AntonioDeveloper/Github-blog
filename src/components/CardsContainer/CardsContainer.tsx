@@ -29,7 +29,7 @@ export function CardsContainer({ allIssues }: issuesArray) {
             );
           })
           :
-          <SingleIssueCard id={singleIssue.items?.[0].id} title={singleIssue.items?.[0].title} created_at={singleIssue.items?.[0].created_at} body={singleIssue.items?.[0].body} items={singleIssue?.items} />
+          <SingleIssueCard number={singleIssue.number} id={singleIssue.items?.[0].id} title={singleIssue.items?.[0].title} created_at={singleIssue.items?.[0].created_at} body={singleIssue.items?.[0].body} items={singleIssue?.items} />
 
       }
     </CardsContainerStyles>

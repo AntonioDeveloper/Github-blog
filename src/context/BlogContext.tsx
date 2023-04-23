@@ -7,6 +7,7 @@ interface BlogContextType {
   user: BlogIntro,
   issues: BlogIssueType[],
   issueSearch: (queryStr: string) => Promise<void>,
+  getIssue: (issueId: string | undefined) => Promise<void>,
   singleIssue: SingleIssueType
 }
 
@@ -30,6 +31,7 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
   const [issues, setIssues] = useState<BlogIssueType[]>([
     {
       id: 0,
+      number: 0,
       title: "",
       created_at: "",
       body: "",
@@ -37,17 +39,14 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
   ]);
   const [singleIssue, setSingleIssue] = useState<SingleIssueType>({
     id: 0,
+    number: 0,
     title: "",
     created_at: "",
-    body: "",
-    items: [
-      {
-        id: 0,
-        title: "",
-        created_at: "",
-        body: "",
-      }
-    ]
+    user: {
+      login: ""
+    },
+    comments: 0,
+    body: ""
   });
 
   useEffect(() => {
@@ -98,8 +97,19 @@ export function BlogContextProvider({ children }: BlogContextProviderProps) {
       });
   }
 
+
+  async function getIssue(issueId: string | undefined) {
+    await apiIssues.get(`AntonioDeveloper/Github-blog/issues/${issueId}`)
+      .then((response: any) => {
+        setSingleIssue(response.data);
+      })
+      .catch((err: string) => {
+        console.log("Erro:" + err);
+      });
+  }
+
   return (
-    <BlogContext.Provider value={{ user, issues, issueSearch, singleIssue }}>
+    <BlogContext.Provider value={{ user, issues, issueSearch, singleIssue, getIssue }}>
       {children}
     </BlogContext.Provider>
   )

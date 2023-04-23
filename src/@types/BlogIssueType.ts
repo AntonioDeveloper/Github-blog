@@ -1,5 +1,6 @@
 export interface BlogIssueType {
-  id: number;
+  id: number | undefined;
+  number: number;
   title: string;
   created_at: string;
   body: string;
@@ -7,15 +8,12 @@ export interface BlogIssueType {
 
 export interface SingleIssueType {
   id: number | undefined;
+  number: number | undefined;
   title: string | undefined;
   created_at: string | undefined;
+  user: {
+    login: string | undefined,
+  },
+  comments: number,
   body: string | undefined;
-  items: [
-    {
-      id: number | undefined;
-      title: string | undefined;
-      created_at: string | undefined;
-      body: string | undefined;
-    }
-  ] | undefined;
 }

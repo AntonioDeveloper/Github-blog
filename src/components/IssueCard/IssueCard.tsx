@@ -8,7 +8,7 @@ interface itemIssue {
 }
 
 export function IssueCard({ item }: itemIssue) {
-  console.log(item)
+  //console.log(item)
 
   const today = new Date();
   const pastDate = new Date(item.created_at);
@@ -17,7 +17,7 @@ export function IssueCard({ item }: itemIssue) {
 
   return (
     <IssueItemContainer>
-      <Link to={`/issue/${item.id}`}>
+      <Link to={`/issue/${item.number}`}>
         <div className="title-line">
           <h3>{item.title}</h3>
           <span>Há {diffDays} dia(s) atrás</span>
