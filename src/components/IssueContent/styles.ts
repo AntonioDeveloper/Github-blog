@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const IssueContentContainer = styled.section`
   width: 70%;
   height: auto;
-  margin: 42% auto 0;
+  margin: 35% auto 0;
   padding-bottom: 10%;
 
   p {
