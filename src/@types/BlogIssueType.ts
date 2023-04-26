@@ -15,5 +15,5 @@ export interface SingleIssueType {
     login: string | undefined,
   },
   comments: number,
-  body: string | undefined;
+  body: string;
 }

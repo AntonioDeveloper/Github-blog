@@ -9,7 +9,7 @@ import { SingleIssueItemContainer } from "./styles";
 //   items: [] | undefined;
 // }
 
-export function SingleIssueCard({ id, title, created_at, body, items }: SingleIssueType) {
+export function SingleIssueCard({ title, created_at, body }: SingleIssueType) {
 
   const today = new Date();
   const pastDate = new Date(`${created_at}`);

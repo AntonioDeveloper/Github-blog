@@ -8,9 +8,6 @@ export const IssueCardTopicContainer = styled.section`
   height: 212px;
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  /* display: flex;
-  justify-content: space-around;
-  align-items: center; */
   box-sizing: border-box;
   padding: 32px 40px;
   position: absolute;
@@ -28,7 +25,24 @@ export const IssueCardTopicContainer = styled.section`
        font-style: normal;
        font-weight: 700;
        text-decoration: none;
+
+       img {
+        &:first-child {
+          margin-right: 8.4px;
+        }
+
+        &:last-child {
+          margin-left: 8.4px;
+        }
+       }
     }
+  }
+
+  .issue-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 8px;;
   }
 
   .issue-header-icons {
@@ -37,6 +51,14 @@ export const IssueCardTopicContainer = styled.section`
 
     li {
       width: 250px;
+    }
+
+    span {
+      color: #7B96B2;
+      font-size: 16px;
+      /* line-height: 160%; */
+      padding-top: 3px;
+      margin-left: 8px;
     }
   }
 `
